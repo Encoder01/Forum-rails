@@ -1,0 +1,18 @@
+<h2 class="text-center">Parola Sıfırla</h2>
+<div class="large-8 columns large-centered panel radius left">
+<%= form_for @user, url: password_reset_path(params[:id]), data: {abide: ""} do |f| %>
+    <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :parola %>
+      <%= f.password_field :parola %>
+      <%= hata_mesaji_goster("Parola en az 8 karakter, bir büyük harf,bir küçük harf ve bir de özel karakter içermeli.")%>
+    </div>
+    <div class="large-6 columns">
+      <%= f.label :parola_onay %>
+      <%= f.password_field :parola_onay %>
+      <%= hata_mesaji_goster("Parola en az 8 karakter, bir büyük harf,bir küçük harf ve bir de özel karakter içermeli.")%>
+    </div>
+    <div class="large-12"><%= f.submit "Parolamı Güncelle", class: 'button radius large-12 columns'%></div>
+    </div>
+<% end %>
+</div>

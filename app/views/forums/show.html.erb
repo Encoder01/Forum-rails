@@ -1,0 +1,17 @@
+<% content_for(:forum_content) do %>
+<div class="large-12 columns">
+  <div>
+  <h1><%= @forum.name%> Forumu</h1>
+  <%	 if signed_in? %>
+    <%= link_to 'Konu aç',new_forum_topic_path(@forum),class: 'button right'%><hr>
+        <%end%>
+  </div>
+  <div class="topics panel columns radius">
+    <% if @forum.topics.any?%>
+    <%= render @forum.topics%>
+  <% else%>
+  <p>Henüz Konu açılmamış</p>
+      <%end%>
+  </div>
+</div>
+<%end%>

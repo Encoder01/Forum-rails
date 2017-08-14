@@ -1,0 +1,9 @@
+<% content_for(:profile_content) do %>
+    <h2><%= page.capitalize%></h2>
+
+    <% if @data.blank? %>
+        <p>kullanıcıya ait <%= page%> bilgi bulunamadı.</p>
+    <%else%>
+        <hr><%= render @data%><hr>
+    <%end%>
+<%end%>

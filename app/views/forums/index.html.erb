@@ -1,0 +1,12 @@
+<%  content_for(:forum_content) do %>
+<div class="large-12 columns">
+  <h1>Hoşgeldiniz</h1>
+  <div class="topics panel columns radius">
+    <% if @topics.any? %>
+    <%= render @topics%>
+        <%else%>
+    <p>Henüz konu açılmamış.</p>
+        <%end%>
+  </div>
+</div>
+<% end%>

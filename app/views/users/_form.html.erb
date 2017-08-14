@@ -1,0 +1,42 @@
+<%= form_for @user, data: {abide: ""} do |form|%>
+    <%= render 'layouts/form_errors', object: @user %>
+<div class="row">
+  <div class="large-6 columns">
+    <%= form.label :Adınız%>
+    <%= form.text_field :first_name,  required:true, pattern: :alpha %>
+    <%= hata_mesaji_goster%>
+  </div>
+  <div class="large-6 columns">
+    <%= form.label :Soyadınız%>
+    <%= form.text_field :last_name, required: true, pattern: :alpha %>
+    <%= hata_mesaji_goster%>
+  </div>
+  <div class="large-12 columns">
+    <%= form.label :KullanıcıAdı%>
+    <%= form.text_field :username, required: true, pattern: :alpha %>
+    <%= hata_mesaji_goster%>
+  </div>
+  <div class="large-12 columns">
+    <%= form.label :Email%>
+    <%= form.email_field :email, required: true, pattern: :email %>
+    <%= hata_mesaji_goster%>
+  </div>
+  <% if params[:action] == 'new' || params[:action] == 'create'%>
+  <div class="large-6 columns">
+    <%= form.label :Parolanız  %>
+    <%= form.password_field :password, required: true, pattern: :password %>
+    <%= hata_mesaji_goster("Parola, bir büyük harf, bir rakam ve bir de
+                            özel karakter içermeli ve en az 8 karakterden oluşmalıdır.")%>
+  </div>
+  <div class="large-6 columns">
+    <%= form.label :ParolaOnay%>
+    <%= form.password_field :password_confirmation, required: true, pattern: :password %>
+    <%= hata_mesaji_goster("Parola, bir büyük harf, bir rakam ve bir de
+                            özel karakter içermeli ve en az 8 karakterden oluşmalıdır.")%>
+  </div>
+      <%end%>
+  <div class="large-12 columns">
+    <%= form.submit  class: ' button radius right'%>
+  </div>
+</div>
+<%end%>

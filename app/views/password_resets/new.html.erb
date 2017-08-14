@@ -1,0 +1,12 @@
+<% provide :email, 'Email Gönder' %>
+<h1 class="text-center">Email Gönder</h1>
+<div class="large-6 columns large-centered panel radius">
+<%= form_tag password_resets_path, method: :post do %>
+    <div class="row">
+      <%= text_field_tag :email, params[:email] %>
+    <div ><%= submit_tag "Parolamı Sıfırla", class: 'button radius large-12 columns'%>
+    </div>
+    </div>
+
+<% end %>
+</div>

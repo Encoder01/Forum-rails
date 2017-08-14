@@ -1,0 +1,16 @@
+<% if signed_in? &&  params[:action] == 'new' %>
+    <%controller.redirect_to	profile_path(current_user)  %>
+<%	else %>
+<% provide :title, 'Oturum Aç' %>
+<h1 class="text-center">Oturum Aç</h1>
+<div class="large-4 columns large-centered panel radius">
+  <%= form_for :session, url: session_path do |form|%>
+      <%= form.text_field :user_name, placeholder: 'Kullanıcı Adı' %><br>
+      <%= form.password_field :password,  placeholder: 'Parola' %>
+      <%= form.submit 'Oturum Aç', class: 'button radius large-12 columns' %>
+  <% end %>
+  <div>
+    <%= link_to "Şifremi Unuttum", parola_yeni_path%>
+  </div>
+</div>
+<%	end %>
