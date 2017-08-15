@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   #oturum için gerekli rotaları ekledik
   resource :session, only:[:new,:create,:destroy]
   #index metodu için rota oluşturmasını engelledik
-  resources :users, except: :index
+  resources :users,   only: [:create, :update, :destroy] do
+    member do
+      get :confirm_email
+    end
+  end
 
   resources :forums, only:[:index,:show], path: 'forumlar' do
     resources :topics,only:[:new,:create], path: 'konular', path_names: {new: 'yeni'}

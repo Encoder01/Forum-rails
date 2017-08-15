@@ -1,0 +1,4 @@
+Merhaba <%= @user.name%>
+<p>kayıt olduğunuz için teşekkürler
+  Aşağıdaki linke tıklayarak Emailinizi onaylayınız.</p>
+<%= confirm_email_user_url(@user.confirm_token) %>

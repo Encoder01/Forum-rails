@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813184911) do
+ActiveRecord::Schema.define(version: 20170815175617) do
 
   create_table "forums", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20170813184911) do
     t.datetime "updated_at", null: false
     t.string "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.boolean "confirm_email", default: false
+    t.string "confirm_token"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

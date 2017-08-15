@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password #bcrypt gemini kullanabilmek için
+  before_create :confirmation_token
   has_many :topics, dependent: :destroy#foruma ait konu silinir ise o
   # tabloyla ilişkili her şeyi sildik.
 
@@ -32,16 +33,32 @@ class User < ApplicationRecord
     #profil ismi göstermek için metod tanımladık
     "#{first_name} #{last_name}"
   end
-  
+
   def avatar_url(size = 160)
-    #kullanıcı eğer gravat kullanıyorsa mailinden md5 şifre oluşturarak resmini çekmek için metodumuzu oluşturduk
     hash_value = Digest::MD5.hexdigest(email.downcase)
     "http://www.gravatar.com/avatar/#{hash_value}?s=#{size}"
+  end
+
+  def email_activate
+    self.confirm_email = true
+    self.confirm_token = nil
+    save!(:validate => false)
+
   end
   
   def to_param
     #user/id değeri yerine RoR kendi içinde barındırdığı kullanıcı adı ile çağırmak için metodu aktif ettik
     username
+  end
+
+  private
+
+  def confirmation_token
+  
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+  
+    end
   end
   
 end

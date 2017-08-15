@@ -21,13 +21,24 @@ class UsersController < ApplicationController
   #new metodumuzdan gelen form değerlerinin kaydedebilmemiz için oluşturduğumuz metod
     @user = User.new(user_params)#formdan gelen değerleri User tablosuna yansıttık
     if @user.save
-      UsersMailer.signup_confirmation(@user).deliver_now
+      UserMailer.registration_confirmation(@user).deliver
       #eğer işlem kaydedilirse kullanıcı girişi yapıp bildirim gösterdik
       login(@user)
       flash[:notice] = "Aramıza Hoşgeldin"
       redirect_to profile_path(@user), notice: "Aramıza Hoşgeldin."
     else
       render 'new'#aksi takdirde yeniden new görünümünü yükle
+    end
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:succes] = "email onaylandı"
+      redirect_to root_url
+    else
+      flash[:error] = " bir hata ile karşılandı"
     end
   end
   
