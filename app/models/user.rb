@@ -15,14 +15,17 @@ class User < ApplicationRecord
   validates :email, presence: true,#email boş bırakılmaz.
                     uniqueness: {case_sensiteve: false},#benzersiz ve harf duyarlılığı false.
                     email: true
- 
+ #parola sıfırlama göndermek için metod oluşturduk.
+  #ilgili tablomuza generate_tokene parametre göndererek doldurduk.
+  #ve zaman bilgisini de ekledik
+  #kaydedip kullanıcıya linki gönderdik.
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
     UserMailer.password_reset(self).deliver_now
   end
-  
+  #parola sıfırlama için yeni bir token oluşturduk ve parametre almasını sağladık
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
@@ -38,7 +41,7 @@ class User < ApplicationRecord
     hash_value = Digest::MD5.hexdigest(email.downcase)
     "http://www.gravatar.com/avatar/#{hash_value}?s=#{size}"
   end
-
+#user kontrollerinde kullanmak için email tablosunu falsedan truye çevirdik ve tokeni sıfırladık.
   def email_activate
     self.confirm_email = true
     self.confirm_token = nil
@@ -52,9 +55,9 @@ class User < ApplicationRecord
   end
 
   private
-
+# email onayı için base64 ile bir url oluştruduk
+  #bunu cınfirm_token kolonuna kaydettik
   def confirmation_token
-  
     if self.confirm_token.blank?
       self.confirm_token = SecureRandom.urlsafe_base64.to_s
   

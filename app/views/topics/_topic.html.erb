@@ -1,7 +1,7 @@
 <div class="topic columns">
   <div class="small-10 columns">
     <h5><%= link_to topic.title, topic%></h5>
-    <p><%= truncate topic.body, length: 50 %></p>
+    <p><%= truncate topic.body, length: 50 %></p><%# konu içeriğini 50 karakter ile sınırladık ana sayfada görüntülemek için%>
     <small >
       <% unless params[:action] == 'show' && params[:controller] == 'forums' %>
       <span >

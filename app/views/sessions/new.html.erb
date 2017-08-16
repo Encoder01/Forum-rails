@@ -1,4 +1,4 @@
-<% if signed_in? &&  params[:action] == 'new' %>
+<% if signed_in? &&  params[:action] == 'new' %><%#eğer kullanıcı girişi olup yinede oturum_Ac sayafasına gelmek isterse yeniden profile yönlendirk.  %>
     <%controller.redirect_to	profile_path(current_user)  %>
 <%	else %>
 <% provide :title, 'Oturum Aç' %>

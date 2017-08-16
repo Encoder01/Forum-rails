@@ -1,7 +1,7 @@
 <% content_for(:profile_content) do %>
     <h2><%= page.capitalize%></h2>
 
-    <% if @data.blank? %>
+    <% if @data.blank? %><%# oluşturmuş olduğumuz data değişkenin içerisine atadığımız konular bilgisini kontrol ettik boş ise kullanıcıya bilgi gönderdik.%>
         <p>kullanıcıya ait <%= page%> bilgi bulunamadı.</p>
     <%else%>
         <hr><%= render @data%><hr>

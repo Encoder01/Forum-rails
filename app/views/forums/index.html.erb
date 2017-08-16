@@ -3,6 +3,7 @@
   <h1>Hoşgeldiniz</h1>
   <div class="topics panel columns radius">
     <% if @topics.any? %>
+        <%# if ile konu varmı kontrol ettik var ise tüm konu başlıkları görüntüledik%>
     <%= render @topics%>
         <%else%>
     <p>Henüz konu açılmamış.</p>

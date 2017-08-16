@@ -1,13 +1,16 @@
 <h1><%= @topic.title%></h1>
 <p class="content"><%= @topic.body%></p>
-<% if current_user == @topic.user%>
+<% if current_user == @topic.user%><%# başka bir kullanıcı başka bir kullanıcıya ait forumu silmemesi için kontrol ettik.%>
     <%= link_to 'Düzenle',edit_topic_path(@topic),class: "button raidus tiny"%>
     <%= link_to 'Sil', @topic, method: :delete, class: "tiny button radius",
         data:{confirm: "Silmekte emin misin?"}%>
 <% end %>
   <h2>Yorumlar</h2>
   <div id="disqus_thread"></div>
-  <script>
+
+
+<%# Disqus yorum scriptini ekledik%>
+<script>
 
       /**
        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.

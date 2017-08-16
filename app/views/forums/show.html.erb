@@ -2,12 +2,13 @@
 <div class="large-12 columns">
   <div>
   <h1><%= @forum.name%> Forumu</h1>
-  <%	 if signed_in? %>
+  <%	 if signed_in? %><%# öncelikle kullanıcı girişi varmı kontrol ettik%>
     <%= link_to 'Konu aç',new_forum_topic_path(@forum),class: 'button right'%><hr>
         <%end%>
   </div>
   <div class="topics panel columns radius">
     <% if @forum.topics.any?%>
+        <%# foruma ait konu var ise listeledik.%>
     <%= render @forum.topics%>
   <% else%>
   <p>Henüz Konu açılmamış</p>

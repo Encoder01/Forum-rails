@@ -5,18 +5,18 @@
       <%= image_tag @user.avatar_url, class: 'profile-image round' %>
     </div>
     <div class="large-10">
-      <h2><%= "#{@user.name}" %></h2>
-      <p><%= "#{@user.email}"%></p>
+      <h2><%= "#{@user.name}" %></h2><%# kullanıcı adı%>
+      <p><%= "#{@user.email}"%></p><%# kullanıcı emmaili%>
 
       <div class="button-bar">
           <ul class="button-group radius">
             <li><%= link_to "Konular", profile_path( sayfa: 'konular'),
-              class: 'small button secondary' %></li>
+              class: 'small button secondary' %></li><%# kullanıcıya ait açılmış konular%>
             <% if current_user == @user %>
             <li><%= link_to "Profilimi Düzenle", edit_profile_path(@user),
-              class: 'small button secondary'%></li>
+              class: 'small button secondary'%></li><%# kullanıcıya ait profil düzenleme yönlendirmesi.%>
             <li><%= link_to "Hesabımı Sil",@user, class: 'small button alert',
-              method: :delete,data:{confirm: "Silmekte Eminmisin?"}%></li>
+              method: :delete,data:{confirm: "Silmekte Eminmisin?"}%></li><%# kullanıcı hesabını silmek için bir e/h sorgusu iel birlikte görüntüledik.%>
                 <%end%>
           </ul>
         </div>

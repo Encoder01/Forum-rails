@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  #email onayı için bir metod oluşturduk.
+  #gelen token parametresinden idyi bulup eşit kullanıcıyı değişkene aktardık
+  #burdan email_activate metoduna yönlendirdik/çağırdık.(model/user)
+  #ardından bildirim ile kullanıcıya gösteridk.
+  #eğer eşit kullanıcı yoksa hata bildirimi gösterdik.
   def confirm_email
     user = User.find_by_confirm_token(params[:id])
     if user
